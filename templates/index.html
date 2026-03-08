@@ -1,0 +1,234 @@
+git<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictive Pulse | Hypertension Analysis</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Hypertension Detection</h1>
+                    <p>Advanced AI-Powered Cardiovascular Risk Assessment Platform</p>
+                </div>
+            </div>
+            <div class="nav-badges">
+                <span class="badge badge-outline"><i class="fa-solid fa-shield-halved"></i> Medical Grade</span>
+                <span class="badge badge-outline"><i class="fa-solid fa-brain"></i> AI-Powered</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-container">
+        
+        <!-- Left Column: Assessment Form -->
+        <section class="assessment-section card glass">
+            
+            <header class="section-header">
+                <h2><i class="fa-solid fa-stethoscope"></i> Comprehensive Health Assessment</h2>
+                <p>Complete our evidence-based questionnaire for personalized hypertension risk evaluation and clinical recommendations</p>
+            </header>
+            
+            <div class="demo-alert">
+                <i class="fa-solid fa-circle-info"></i> Demo Mode: Using simulated AI prediction for demonstration
+            </div>
+
+            <!-- Results Container (Hidden by default) -->
+            <div id="result-container" class="result-container hidden">
+                <!-- Dynamically populated via JS -->
+            </div>
+
+            <form id="assessment-form" class="assessment-form">
+                
+                <div class="form-grid">
+                    <!-- Demographic Info -->
+                    <div class="form-group">
+                        <label for="gender"><i class="fa-solid fa-venus-mars"></i> Gender</label>
+                        <select id="gender" name="Gender" required>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age-group"><i class="fa-solid fa-users"></i> Age Group</label>
+                        <select id="age-group" name="AgeGroup" required>
+                            <option value="18-34 years">18-34 years</option>
+                            <option value="35-50 years">35-50 years</option>
+                            <option value="51-64 years">51-64 years</option>
+                            <option value="65+ years">65+ years</option>
+                        </select>
+                    </div>
+
+                    <!-- Medical History -->
+                    <div class="form-group">
+                        <label for="family-history"><i class="fa-solid fa-clock-rotate-left"></i> Family History of Hypertension</label>
+                        <select id="family-history" name="FamilyHistory" required>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="medical-care"><i class="fa-solid fa-user-doctor"></i> Currently Under Medical Care</label>
+                        <select id="medical-care" name="UnderMedicalCare" required>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bp-medication"><i class="fa-solid fa-pills"></i> Currently Taking BP Medication</label>
+                        <select id="bp-medication" name="TakingBPMedication" required>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="symptom-severity"><i class="fa-solid fa-temperature-half"></i> Symptom Severity</label>
+                        <select id="symptom-severity" name="SymptomSeverity" required>
+                            <option value="Mild">Mild</option>
+                            <option value="Moderate">Moderate</option>
+                            <option value="Severe">Severe</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Specific Symptoms -->
+                    <div class="form-group">
+                        <label for="short-breath"><i class="fa-solid fa-lungs"></i> Shortness of Breath</label>
+                        <select id="short-breath" name="ShortnessOfBreath">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vision-changes"><i class="fa-solid fa-eye"></i> Vision Changes</label>
+                        <select id="vision-changes" name="VisionChanges">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nosebleeds"><i class="fa-solid fa-droplet"></i> Frequent Nosebleeds</label>
+                        <select id="nosebleeds" name="FrequentNosebleeds">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time-diagnosis"><i class="fa-regular fa-calendar-check"></i> Time Since Diagnosis</label>
+                        <select id="time-diagnosis" name="TimeSinceDiagnosis">
+                            <option value="Less than 1 Year">Less than 1 Year</option>
+                            <option value="1 - 5 Years">1 - 5 Years</option>
+                            <option value="More than 5 Years">More than 5 Years</option>
+                        </select>
+                    </div>
+
+                    <!-- Readings & Lifestyle -->
+                    <div class="form-group">
+                        <label for="systolic"><i class="fa-solid fa-heart"></i> Systolic Pressure</label>
+                        <select id="systolic" name="SystolicPressure" required>
+                            <option value="100-110 mmHg (Normal)">100-110 mmHg (Normal)</option>
+                            <option value="111 - 120 mmHg (Normal)">111 - 120 mmHg (Normal)</option>
+                            <option value="121-130 mmHg (Stage 1)">121-130 mmHg (Stage 1)</option>
+                            <option value="130+ mmHg (Stage 2)">130+ mmHg (Stage 2)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="diastolic"><i class="fa-solid fa-heart-pulse"></i> Diastolic Pressure</label>
+                        <select id="diastolic" name="DiastolicPressure" required>
+                            <option value="70-80 mmHg (Normal)">70-80 mmHg (Normal)</option>
+                            <option value="81 - 90 mmHg (Normal)">81 - 90 mmHg (Normal)</option>
+                            <option value="91-100 mmHg (Stage 1)">91-100 mmHg (Stage 1)</option>
+                            <option value="100+ mmHg (Stage 2)">100+ mmHg (Stage 2)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="healthy-diet"><i class="fa-solid fa-utensils"></i> Heart-Healthy Diet</label>
+                        <select id="healthy-diet" name="HeartHealthyDiet">
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submit-btn">
+                    <i class="fa-solid fa-chart-line"></i> GENERATE RISK ASSESSMENT
+                </button>
+            </form>
+        </section>
+
+        <!-- Right Column: Info Panels -->
+        <aside class="info-sidebar">
+            
+            <!-- About System Panel -->
+            <div class="card glass info-panel">
+                <h3><i class="fa-solid fa-circle-info"></i> About This System</h3>
+                <p>Our AI-powered platform analyzes multiple cardiovascular risk factors using advanced machine learning algorithms trained on clinical data.</p>
+                <ul class="feature-list">
+                    <li><i class="fa-solid fa-check"></i> Evidence-based risk assessment</li>
+                    <li><i class="fa-solid fa-check"></i> Clinical guideline compliance</li>
+                    <li><i class="fa-solid fa-check"></i> Personalized recommendations</li>
+                    <li><i class="fa-solid fa-check"></i> Professional medical support</li>
+                </ul>
+            </div>
+
+            <!-- Guidelines Panel -->
+            <div class="card glass info-panel">
+                <h3><i class="fa-solid fa-heart"></i> Blood Pressure Guidelines</h3>
+                <table class="guidelines-table">
+                    <tr>
+                        <td>Normal:</td>
+                        <td>&lt;120/80 mmHg</td>
+                    </tr>
+                    <tr>
+                        <td>Elevated:</td>
+                        <td>120-129/&lt;80 mmHg</td>
+                    </tr>
+                    <tr>
+                        <td>Stage 1:</td>
+                        <td>130-139/80-89 mmHg</td>
+                    </tr>
+                    <tr>
+                        <td>Stage 2:</td>
+                        <td>&ge;140/&ge;90 mmHg</td>
+                    </tr>
+                    <tr>
+                        <td>Crisis:</td>
+                        <td>&gt;180/&gt;120 mmHg</td>
+                    </tr>
+                </table>
+            </div>
+
+        </aside>
+
+    </main>
+
+    <!-- App Logic Scripts -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
